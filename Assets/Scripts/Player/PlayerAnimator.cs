@@ -17,7 +17,7 @@ namespace Assets.Scripts.Player
         private readonly int _attackStateHash = Animator.StringToHash("Attack Normal");
         private readonly int _walkingStateHash = Animator.StringToHash("Run");
         private readonly int _deathStateHash = Animator.StringToHash("Die");
-        //dsf
+
         [SerializeField] private Animator _animator;
         [SerializeField] private CharacterController _characterController;
 

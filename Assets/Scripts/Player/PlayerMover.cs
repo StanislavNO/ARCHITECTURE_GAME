@@ -2,6 +2,7 @@ using Assets.Scripts.Infrastructure;
 using Assets.Scripts.Services.Input;
 using Assets.Scripts.Services;
 using UnityEngine;
+using Assets.Scripts.CameraLogic;
 
 namespace Assets.Scripts.Player
 {
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Player
         private void Start()
         {
             _camera = Camera.main;
+            _camera.GetComponent<CameraFollower>().SetTarget(transform); 
         }
 
         private void Update()
