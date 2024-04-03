@@ -6,30 +6,30 @@ namespace Assets.Scripts.Infrastructure
 {
     public class LoadLevelState : IPayloadedState<string>
     {
-        private const string InitPointTag = "initialPoint";
+        private const string InitPointTag = "InitialPoint";
         private const string PlayerPath = "Hero/hero";
         private const string HudPath = "HUD/HeadUpDisplay";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
-        private readonly LoadingCurtain _curain;
+        private readonly LoadingCurtain _curtain;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtain)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _curain = curtain;
+            _curtain = curtain;
         }
 
         public void Enter(string sceneName)
         {
-            _curain.Show();
+            _curtain.Show();
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
         public void Exit()
         {
-            _curain.Hide();
+            _curtain.Hide();
         }
 
         private void OnLoaded()
@@ -53,7 +53,7 @@ namespace Assets.Scripts.Infrastructure
         {
             var prefab = Resources.Load<GameObject>(path);
 
-            return GameObject.Instantiate(prefab);
+            return Object.Instantiate(prefab);
         }
 
         private static GameObject Instantiate(string path, Vector3 position)

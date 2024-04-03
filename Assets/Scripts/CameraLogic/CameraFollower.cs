@@ -4,10 +4,11 @@ namespace Assets.Scripts.CameraLogic
 {
     public class CameraFollower : MonoBehaviour
     {
-        [SerializeField] private Transform _target;
         [SerializeField] private float _distance;
         [SerializeField] private float _rotationX;
         [SerializeField] private float _offsetY;
+
+        private Transform _target;
 
         private void LateUpdate()
         {

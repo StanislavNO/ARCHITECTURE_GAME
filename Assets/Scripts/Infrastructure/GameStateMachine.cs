@@ -17,8 +17,6 @@ namespace Assets.Scripts.Infrastructure
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
-
-
         }
 
         public void Enter<TState>() where TState : class, IState

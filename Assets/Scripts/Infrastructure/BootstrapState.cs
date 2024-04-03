@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Services.Input;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure

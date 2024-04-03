@@ -2,38 +2,37 @@ using Assets.Scripts.Infrastructure;
 using Assets.Scripts.Services.Input;
 using Assets.Scripts.Services;
 using UnityEngine;
-using Assets.Scripts.CameraLogic;
 
 namespace Assets.Scripts.Player
 {
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private CharacterController _characterController;
-        [SerializeField] private float _speed;
+        [SerializeField] private float _speed = 5f;
 
-        private IInputService _inputService;
+        private IInputService _input;
         private Camera _camera;
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _input = Game.InputService;
+            _characterController = GetComponent<CharacterController>();
+
         }
 
         private void Start()
         {
             _camera = Camera.main;
-            _camera.GetComponent<CameraFollower>().SetTarget(transform); 
         }
 
         private void Update()
         {
             Vector3 direction = Vector3.zero;
 
-            if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
+            if (_input.Axis.sqrMagnitude > Constants.Epsilon)
             {
-                direction = _camera.transform
-                    .TransformDirection(_inputService.Axis);
-
+                direction = _camera.transform.TransformDirection(_input.Axis);
                 direction.y = 0;
                 direction.Normalize();
 
