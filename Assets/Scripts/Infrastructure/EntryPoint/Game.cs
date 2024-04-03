@@ -1,6 +1,5 @@
-﻿using Assets.Scripts.Logic;
-using Assets.Scripts.Services.Input;
-using UnityEngine;
+﻿using Assets.Scripts.Services.Input;
+using Assets.Scripts.Logic;
 
 namespace Assets.Scripts.Infrastructure
 {

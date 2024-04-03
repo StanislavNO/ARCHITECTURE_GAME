@@ -1,7 +1,7 @@
-﻿using System;
+﻿using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System;
 
 namespace Assets.Scripts.Infrastructure
 {
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Infrastructure
             _coroutineRunner.StartCoroutine(LoadScene(sceneName, onLoaded));
         }
 
-        public IEnumerator LoadScene(string nextScene, Action onLoaded = null)
+        private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {

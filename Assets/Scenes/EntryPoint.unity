@@ -325,7 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 352ab4d661dac064ba366f0799a5644f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
   _distance: 0
   _rotationX: 0
   _offsetY: 0
@@ -369,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7722a89a942aefb478de90aad77c4fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoadingCurtain: {fileID: 1279053496}
+  _loadingCurtain: {fileID: 1279053496}
 --- !u!4 &1470829407
 Transform:
   m_ObjectHideFlags: 0

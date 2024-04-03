@@ -18,7 +18,6 @@ namespace Assets.Scripts.Player
         {
             _input = Game.InputService;
             _characterController = GetComponent<CharacterController>();
-
         }
 
         private void Start()
