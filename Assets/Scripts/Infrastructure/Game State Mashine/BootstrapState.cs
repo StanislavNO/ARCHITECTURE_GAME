@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Services.Input;
+﻿using Assets.Scripts.Services;
+using Assets.Scripts.Services.Input;
 using UnityEngine;
 
 namespace Assets.Scripts.Infrastructure
@@ -6,20 +7,22 @@ namespace Assets.Scripts.Infrastructure
     public class BootstrapState : IState
     {
         private const string EntryPoint = "EntryPoint";
-        private const string StartScene = "game";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly ServiceLocator _serviceLocator;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, ServiceLocator serviceLocator)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _serviceLocator = serviceLocator;
+
+            RegisterServices();
         }
 
         public void Enter()
         {
-            RegisterServices();
             _sceneLoader.Load(EntryPoint, onLoaded: EnterLoadLevel);
         }
 
@@ -29,15 +32,20 @@ namespace Assets.Scripts.Infrastructure
 
         private void EnterLoadLevel()
         {
-            _stateMachine.Enter<LoadLevelState, string>(StartScene);
+            _stateMachine.Enter<LoadProgressState>();
         }
 
         private void RegisterServices()
         {
-            Game.InputService = RegisterInputService();
+            _serviceLocator.RegisterSingle(GetInputService());
+            _serviceLocator.RegisterSingle<IAssetProvider>(new AssetProvider());
+            _serviceLocator.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            _serviceLocator.RegisterSingle<ISaveLoadService>(new SaveLoadService());
+            _serviceLocator.RegisterSingle<IGameFactory>(new GameFactory(_serviceLocator.Single<IAssetProvider>()));
         }
 
-        private static IInputService RegisterInputService()
+
+        private static IInputService GetInputService()
         {
             if (Application.isEditor)
                 return new StandaloneInputService();

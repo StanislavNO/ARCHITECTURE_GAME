@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Logic;
 using System;
+using Assets.Scripts.Services;
 
 namespace Assets.Scripts.Infrastructure
 {
@@ -9,13 +10,14 @@ namespace Assets.Scripts.Infrastructure
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
 
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, ServiceLocator serviceLocator)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
-                [typeof(GameLoopState)] = new GameLoopState(this),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, serviceLocator.Single<IGameFactory>()),
+                [typeof(LoadProgressState)] = new LoadProgressState(this, serviceLocator.Single<IPersistentProgressService>(), serviceLocator.Single<ISaveLoadService>()),
+                [typeof(GameLoopState)] = new GameLoopState(this)
             };
         }
 
