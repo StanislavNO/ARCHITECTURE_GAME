@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Infrastructure
 {
-    public class ServiceLocator 
+    public class ServiceLocator
     {
         private static ServiceLocator _instance;
 

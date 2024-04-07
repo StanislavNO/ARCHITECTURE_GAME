@@ -8,8 +8,8 @@ public class SaveLoadService : ISaveLoadService
 
     public PlayerProgress LoadProgress()
     {
-        return PlayerPrefs.GetString(ProgressKey)?
-            .ToDeserialised<PlayerProgress>();
+        return PlayerPrefs.GetString(ProgressKey)
+            ?.ToDeserialised<PlayerProgress>();
     }
 
     public void SaveProgress()
