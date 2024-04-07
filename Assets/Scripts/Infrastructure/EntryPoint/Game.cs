@@ -5,12 +5,13 @@ namespace Assets.Scripts.Infrastructure
 {
     public class Game
     {
-        public static IInputService InputService;
-        public GameStateMachine StateMachine;
+        private IInputService _inputService;
 
         public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
         {
             StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, ServiceLocator.Container);
         }
+
+        public GameStateMachine StateMachine { get; private set; }
     }
 }

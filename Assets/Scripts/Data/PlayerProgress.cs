@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Scripts.Data
 {
     [Serializable]
-    public class PlayerProgress 
+    public class PlayerProgress
     {
         public WorldData WorldData;
 

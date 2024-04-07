@@ -45,7 +45,7 @@ namespace Assets.Scripts.Infrastructure
         }
 
 
-        private static IInputService GetInputService()
+        private IInputService GetInputService()
         {
             if (Application.isEditor)
                 return new StandaloneInputService();

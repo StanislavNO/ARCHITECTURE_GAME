@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.Services;
 using Assets.Scripts.Logic;
 using System;
-using Assets.Scripts.Services;
 
 namespace Assets.Scripts.Infrastructure
 {
