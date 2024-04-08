@@ -11,7 +11,7 @@ namespace Assets.Scripts.Player
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMover : MonoBehaviour, ISavedProgress
     {
-        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private CharacterController _controller;
         [SerializeField] private float _speed = 5f;
 
         private IInputService _input;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Player
         private void Awake()
         {
             _input = ServiceLocator.Container.Single<IInputService>();
-            _characterController = GetComponent<CharacterController>();
+            _controller = GetComponent<CharacterController>();
         }
 
         private void Start()
@@ -43,7 +43,7 @@ namespace Assets.Scripts.Player
 
             direction += Physics.gravity;
 
-            _characterController.Move(direction * Time.deltaTime * _speed);
+            _controller.Move(direction * Time.deltaTime * _speed);
         }
 
         public void UpdateProgress(PlayerProgress progress)
@@ -66,9 +66,9 @@ namespace Assets.Scripts.Player
 
         private void Warp(Vector3Data to)
         {
-            _characterController.enabled = false;
-            transform.position = DataExtensions.AsUnityVector(to);
-            _characterController.enabled = true;
+            _controller.enabled = false;
+            transform.position = DataExtensions.AsUnityVector(to).AddY(_controller.height);
+            _controller.enabled = true;
         }
 
         private string GetCurrentLevel()

@@ -40,8 +40,8 @@ namespace Assets.Scripts.Infrastructure
             _serviceLocator.RegisterSingle(GetInputService());
             _serviceLocator.RegisterSingle<IAssetProvider>(new AssetProvider());
             _serviceLocator.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-            _serviceLocator.RegisterSingle<ISaveLoadService>(new SaveLoadService());
             _serviceLocator.RegisterSingle<IGameFactory>(new GameFactory(_serviceLocator.Single<IAssetProvider>()));
+            _serviceLocator.RegisterSingle<ISaveLoadService>(new SaveLoadService(_serviceLocator.Single<IPersistentProgressService>(), _serviceLocator.Single<IGameFactory>()));
         }
 
 
