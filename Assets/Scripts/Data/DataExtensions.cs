@@ -6,7 +6,7 @@ namespace Assets.Scripts.Data
     {
         public static Vector3 AddY(this Vector3 position, float heightAddition)
         {
-            position.y += heightAddition;
+            position.y = heightAddition;
             return position;
         }
 

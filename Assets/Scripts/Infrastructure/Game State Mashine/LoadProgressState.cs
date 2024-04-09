@@ -6,7 +6,7 @@ namespace Assets.Scripts.Infrastructure
 {
     public class LoadProgressState : IState
     {
-        private const string StartScene = "game";
+        private const string StartScene = "Demo";
 
         private readonly GameStateMachine _gameStateMachine;
         private readonly IPersistentProgressService _progressService;

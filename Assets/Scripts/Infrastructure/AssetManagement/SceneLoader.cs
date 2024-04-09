@@ -23,10 +23,11 @@ namespace Assets.Scripts.Infrastructure
         {
             if (SceneManager.GetActiveScene().name == nextScene)
             {
+                Debug.Log("s");
                 onLoaded?.Invoke();
                 yield break;
             }
-
+            Debug.Log("ss");
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
             while (!waitNextScene.isDone)
