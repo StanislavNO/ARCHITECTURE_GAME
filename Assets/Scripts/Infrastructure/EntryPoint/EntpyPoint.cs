@@ -1,13 +1,18 @@
+using Assets.Scripts;
 using UnityEngine;
 
-public class EntryPoint : MonoBehaviour, ICoroutineRunner
+namespace Assets.Scripts.Infrastructure
 {
-    private Game _game;
-
-    private void Awake()
+    public class EntryPoint : MonoBehaviour, ICoroutineRunner
     {
-        _game = new Game();
-        
-        DontDestroyOnLoad(this);
+        private Game _game;
+
+        private void Awake()
+        {
+            _game = new Game();
+            _game.StateMachine.ActivateSate<BootstrapState>();
+
+            DontDestroyOnLoad(this);
+        }
     }
 }

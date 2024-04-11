@@ -1,18 +1,24 @@
+using Assets.Scripts.Services.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Game : MonoBehaviour
+namespace Assets.Scripts.Infrastructure
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Game
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public Game()
+        {
+            StateMachine = new GameStateMachine();
+        }
+
+        public GameStateMachine StateMachine { get; private set; }
+        public static IInputService InputService { get; private set; }
+
+        public static void SetInputService(IInputService inputService)
+        {
+            InputService = inputService;
+        }
     }
 }

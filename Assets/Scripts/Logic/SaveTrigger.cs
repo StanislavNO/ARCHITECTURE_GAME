@@ -8,18 +8,18 @@ namespace Assets.Scripts.Logic
     {
         [SerializeField] private BoxCollider _collider;
 
-        private ISaveLoadService _saveLoadService;
+        //private ISaveLoadService _saveLoadService;
 
         private void Start()
         {
             _collider.isTrigger = true;
 
-            _saveLoadService = ServiceLocator.Container.Single<ISaveLoadService>();
+            //_saveLoadService = ServiceLocator.Container.Single<ISaveLoadService>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            _saveLoadService.SaveProgress();
+            //_saveLoadService.SaveProgress();
             gameObject.SetActive(false);
         }
 

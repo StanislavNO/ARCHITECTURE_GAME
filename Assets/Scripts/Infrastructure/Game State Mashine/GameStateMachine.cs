@@ -5,10 +5,19 @@ namespace Assets.Scripts.Infrastructure
 {
     public class GameStateMachine
     {
-        private Dictionary<Type, IState> _states;
+        private readonly Dictionary<Type, IState> _states;
+
         private IState _activeState;
 
-        public void Enter<TState>() where TState : IState
+        public GameStateMachine()
+        {
+            _states = new Dictionary<Type, IState>()
+            {
+                [typeof(BootstrapState)] = new BootstrapState(this)
+            };
+        }
+
+        public void ActivateSate<TState>() where TState : IState
         {
             _activeState?.Exit();
             IState state = _states[typeof(TState)];
@@ -16,7 +25,7 @@ namespace Assets.Scripts.Infrastructure
             state.Enter();
         }
 
-        public void Exit()
+        public void DeactivateState()
         {
 
         }
