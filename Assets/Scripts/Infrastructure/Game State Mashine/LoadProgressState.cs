@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Data;
 using Assets.Scripts.Services;
-using System;
 
 namespace Assets.Scripts.Infrastructure
 {
