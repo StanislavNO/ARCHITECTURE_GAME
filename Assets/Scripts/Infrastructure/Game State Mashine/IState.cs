@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts.Infrastructure.Game_State_Mashine
+﻿namespace Assets.Scripts.Infrastructure
 {
-    internal interface IState
+    public interface IState
     {
+        void Enter();
+        void Exit();
     }
 }
